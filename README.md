@@ -105,34 +105,6 @@ Open [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ---
 
-## ⚙️ Production notes
-
-### Use PostgreSQL
-
-Install `psycopg2-binary` and set `DATABASE_URL` env var to your Postgres connection string. Update `ALLOWED_HOSTS` and `DEBUG=False`.
-
-### Static files
-
-Collect static files before serving:
-
-```bash
-python manage.py collectstatic
-```
-
-Use a proper static server (e.g., Nginx) or a CDN in production.
-
-### WSGI / ASGI
-
-Use Gunicorn (for WSGI) or Daphne/uvicorn for ASGI deployments:
-
-```bash
-gunicorn config.wsgi:application
-```
-
-### Example systemd + gunicorn + nginx setup
-
-Include reverse proxy to Gunicorn and serve `/media/` and `/static/` directly from Nginx. Ensure file permissions for `media/` are correct.
-
 ### Docker (optional)
 
 Provide a `Dockerfile` and `docker-compose.yml` for containerized deployments. Ensure media persistence via volumes.
